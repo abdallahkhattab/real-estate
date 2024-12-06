@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Site\SiteController;
 
@@ -21,6 +22,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Artisan::call('cache:clear');
+Artisan::call('config:cache');
+Artisan::call('view:clear');
+return "Cleared!";
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
